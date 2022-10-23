@@ -8,14 +8,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class LoginController {
+    @Value("${Password}")
+    private String pass;
 
     @PostMapping(value = "login")
     public String checkPassword(Model model,
                                 @RequestParam(name = "password") String password) {
-        if (password.equals(@Value("${Password}")))
-            //login = true
-        else {
-            //login = false
-        }
+        return "Passord er " + password.equals(pass);
     }
 }
