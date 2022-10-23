@@ -20,10 +20,9 @@ public class HandleController {
     @Value("${url.loginURL}")   private String LOGIN_URL;
     @Value("${url.handlelisteURL}") private String HANDLELISTE_URL;
 
-    private Handleliste handleliste = new Handleliste();
 
-    @GetMapping(name = "handleliste")
-    public String visHandleliste(HttpSession session, RedirectAttributes ra){
+    @GetMapping(value = "${url.handlelisteURL}")
+    public String visHandleliste(Model model, HttpSession session, RedirectAttributes ra){
         if (!LoginUtil.isUserLoggedIn(session)) {
             ra.addFlashAttribute("redirectMessage", REQUIRES_LOGIN_MESSAGE);
             return "redirect:" + LOGIN_URL;
@@ -34,12 +33,12 @@ public class HandleController {
     @PostMapping(value = "addToList")
     public String addToList(Model model,
                             @RequestParam(name = "newItem") String newItem){
-        return "NULL";
+        return "redirect:" + HANDLELISTE_URL;
     }
 
     @PostMapping(value = "removeFromList")
     public String removeFromList(Model model,
                                  @RequestParam(name = "remItem") String remItem){
-        return "NULL";
+        return "redirect:" + HANDLELISTE_URL;
     }
 }

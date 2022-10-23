@@ -15,8 +15,7 @@ public class LoginController {
     @Value("${message.invalidPassword}") private String INVALID_USERNAME_MESSAGE;
     @Value("${url.loginURL}")   private String LOGIN_URL;
     @Value("${url.handlelisteURL}") private String HANDLELISTE_URL;
-    @Value("${Password}")
-    private String pass;
+    @Value("${Password}") private String pass;
 
     @GetMapping
     @RequestMapping("/")
@@ -37,6 +36,6 @@ public class LoginController {
             return LOGIN_URL;
         }
         LoginUtil.loginUser(request);
-        return "redirect:" + HANDLELISTE_URL;
+        return "redirect:/" + HANDLELISTE_URL;
     }
 }

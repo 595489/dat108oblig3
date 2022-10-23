@@ -21,4 +21,8 @@ public class Handleliste {
     public int getVareIndex(Vare vare){
         return varer.indexOf(vare);
     }
+
+    public List<Vare> getVarer(){
+        return varer;
+    }
 }

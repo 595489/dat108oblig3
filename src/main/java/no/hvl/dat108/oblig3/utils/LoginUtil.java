@@ -1,5 +1,7 @@
 package no.hvl.dat108.oblig3.utils;
 
+import no.hvl.dat108.oblig3.Handleliste;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -17,6 +19,7 @@ public class LoginUtil {
 
         HttpSession session = request.getSession();
         session.setMaxInactiveInterval(MAX_INTERACTIVE_INTERVAL);
+        session.setAttribute("handleliste", new Handleliste());
 
         isLoggedIn = true;
     }
