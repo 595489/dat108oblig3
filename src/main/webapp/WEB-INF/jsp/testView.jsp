@@ -4,11 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="CSS/index.css"/>
-    <title>Handleliste</title>
+    <title>HandlelisteTest</title>
 </head>
 <body>
 <p>
-${}
+    Passordet er gyldig?: ${passcheck}
 </p>
 </body>
 </html>
