@@ -1,9 +1,10 @@
 package no.hvl.dat108.oblig3;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Handleliste {
-    private List<Vare> varer;
+    private List<Vare> varer = new ArrayList<>();
 
     public Handleliste(){
 
