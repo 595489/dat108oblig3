@@ -1,11 +1,11 @@
 package no.hvl.dat108.oblig3.controller;
 
-import no.hvl.dat108.oblig3.Handleliste;
+import no.hvl.dat108.oblig3.model.Vare;
 import no.hvl.dat108.oblig3.utils.LoginUtil;
+import no.hvl.dat108.oblig3.model.Handleliste;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,7 +22,7 @@ public class HandleController {
 
 
     @GetMapping
-    public String visHandleliste(Model model, HttpSession session, RedirectAttributes ra){
+    public String visHandleliste(HttpSession session, RedirectAttributes ra){
         if (!LoginUtil.isUserLoggedIn(session)) {
             ra.addFlashAttribute("redirectMessage", REQUIRES_LOGIN_MESSAGE);
             return "redirect:" + LOGIN_URL;
@@ -31,14 +31,22 @@ public class HandleController {
     }
 
     @PostMapping
-    public String addToList(Model model,
-                            @RequestParam(name = "newItem") String newItem){
+    public String editList(@RequestParam(name = "vare") String vare, @RequestParam(name = "slettvare") String slettVare,
+                           HttpSession session, RedirectAttributes ra){
+
+        if(!LoginUtil.isUserLoggedIn(session)){
+            ra.addFlashAttribute("redirectMessage", REQUIRES_LOGIN_MESSAGE);
+            return "redirect:" + LOGIN_URL;
+        }
+        Handleliste handleliste = (Handleliste) session.getAttribute("handleliste");
+        if(vare != null){
+            handleliste.addItem(new Vare(vare));
+
+        }
+        if(slettVare != null){
+            handleliste.removeVare(slettVare);
+        }
         return "redirect:" + HANDLELISTE_URL;
     }
 
-   //@PostMapping
-    public String removeFromList(Model model,
-                                 @RequestParam(name = "remItem") String remItem){
-        return "redirect:" + HANDLELISTE_URL;
-    }
 }

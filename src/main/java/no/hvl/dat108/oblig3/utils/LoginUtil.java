@@ -1,6 +1,6 @@
 package no.hvl.dat108.oblig3.utils;
 
-import no.hvl.dat108.oblig3.Handleliste;
+import no.hvl.dat108.oblig3.model.Handleliste;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;

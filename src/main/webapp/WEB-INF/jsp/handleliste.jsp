@@ -12,26 +12,26 @@
 
 <h4>Handleliste</h4>
 
-<form:form action="addToList" method="post">
-    <form:label path="item">New item</form:label>
-    <input type="text" name="newItem">
-    <input type="submit" value="submitItem">
-</form:form>
-
-<table>
-       <c:forEach var="item" items="${handleliste.varer}">
-                 <tr>
-                      <td>--%>
-<%--                <form:form action="removeFromList" method="post">--%>
-<%--                    <form:hidden path="${item.name}" id="${Handleliste.vareIndex}" />--%>
-<%--                    <form:label path="${item.name}" />--%>
-<%--                    <form:button name="remove" value="removeFromList">Remove</form:button>--%>
-<%--                </form:form>--%>
-<%--            </td>--%>
-    <td><h4>${item.name}</h4></td>
-    <td><button name="${item.name}" id="${item.name}">remove</button></td>
-</tr>
+<c:forEach var="vare" items="${handleliste.getCartItems()}">
+    <tr>
+        <td>
+            <form action="handleliste.jsp" method = "post">
+                <c:out value="${vare.name}"/>
+                <input type ="hidden" name ="slettVare" value="${vare.name}"/>
+                <input type="submit" value="Slett"/>
+            </form>
+        </td>
+    </tr>
 </c:forEach>
+
+<form action="handleliste.jsp" method="post">
+    <fieldset>
+        Legg til vare: <br></br>
+        <input type="text" name="vare" value="">
+        <input type="submit" value="legg til" />
+        <br></br>
+    </fieldset>
+</form>
 </table>
 
 <form action="logout" method="post">
