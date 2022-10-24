@@ -9,7 +9,7 @@
 </head>
 <body>
 <p>
-    Passordet er gyldig?: ${passcheck}
+
 </p>
 </body>
 </html>

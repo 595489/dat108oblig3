@@ -14,14 +14,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.HttpSession;
 
 @Controller
-//@RequestMapping("/${url.handleliste}")
+@RequestMapping("/${url.handlelisteURL}")
 public class HandleController {
     @Value("${message.requireLogin}") private String REQUIRES_LOGIN_MESSAGE;
     @Value("${url.loginURL}")   private String LOGIN_URL;
     @Value("${url.handlelisteURL}") private String HANDLELISTE_URL;
 
 
-    @GetMapping(value = "${url.handlelisteURL}")
+    @GetMapping
     public String visHandleliste(Model model, HttpSession session, RedirectAttributes ra){
         if (!LoginUtil.isUserLoggedIn(session)) {
             ra.addFlashAttribute("redirectMessage", REQUIRES_LOGIN_MESSAGE);
@@ -30,13 +30,13 @@ public class HandleController {
         return HANDLELISTE_URL;
     }
 
-    @PostMapping(value = "addToList")
+    @PostMapping
     public String addToList(Model model,
                             @RequestParam(name = "newItem") String newItem){
         return "redirect:" + HANDLELISTE_URL;
     }
 
-    @PostMapping(value = "removeFromList")
+   //@PostMapping
     public String removeFromList(Model model,
                                  @RequestParam(name = "remItem") String remItem){
         return "redirect:" + HANDLELISTE_URL;

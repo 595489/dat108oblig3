@@ -19,19 +19,25 @@
 </form:form>
 
 <table>
-    <c:forEach var="item" items="${handleliste.varer}">
-        <tr>
-<%--            <td>--%>
+       <c:forEach var="item" items="${handleliste.varer}">
+                 <tr>
+                      <td>--%>
 <%--                <form:form action="removeFromList" method="post">--%>
 <%--                    <form:hidden path="${item.name}" id="${Handleliste.vareIndex}" />--%>
 <%--                    <form:label path="${item.name}" />--%>
 <%--                    <form:button name="remove" value="removeFromList">Remove</form:button>--%>
 <%--                </form:form>--%>
 <%--            </td>--%>
-            <td><h4>${item.name}</h4></td>
-            <td><button name="${item.name}" id="${item.name}">remove</button></td>
-        </tr>
-    </c:forEach>
+    <td><h4>${item.name}</h4></td>
+    <td><button name="${item.name}" id="${item.name}">remove</button></td>
+</tr>
+</c:forEach>
 </table>
+
+<form action="logout" method="post">
+<fieldset>
+<p><input type="submit" value="Logg ut" /></p>
+</fieldset>
+</form>
 </body>
 </html>
